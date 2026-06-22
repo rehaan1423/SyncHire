@@ -8,6 +8,7 @@ import path from "path"
 import { connectDB } from "./src//lib/db.js";
 import { clerkMiddleware } from '@clerk/express'
 import chatRoutes from "./src/routes/chatRoutes.js";
+import sessionRoutes from "./src/routes/sessionRoutes.js";
 import webhookRoutes from "./src/routes/webhookRoutes.js";
 
 const app = express();
@@ -35,6 +36,7 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
+app.use("/api/sessions",sessionRoutes);
 app.use("/api/chat",chatRoutes);
 
 const startServer = async () => {
