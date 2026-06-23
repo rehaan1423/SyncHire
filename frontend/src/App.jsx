@@ -1,26 +1,28 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { SignIn, SignInButton, SignOutButton, UserButton,Show,SignUpButton } from '@clerk/react'
+import { SignIn, SignInButton, SignOutButton, UserButton, Show, SignUpButton, useUser } from '@clerk/react'
+import { Navigate, Route, Routes } from 'react-router';
+import HomePage from "./pages/HomePage.jsx";
+import ProblemsPage from './pages/ProblemsPage.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isSignedIn,isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-base-100">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <h1>Welcome,Coming Soon..</h1>
-
-      <Show when="signed-out">
-        <SignInButton mode = "modal" />
-        <SignUpButton mode='modal' />
-      </Show>
-      <Show when="signed-in">
-        <SignOutButton />
-        <UserButton />
-      </Show>
-    </div>
+    <Routes>
+      <Route path="/" element={!isSignedIn ? <HomePage /> : <Navigate to="/dashboard" />} />
+      <Route path="/dashboard" element={isSignedIn ? <DashboardPage /> : <Navigate to="/" />} />
+      <Route path="/problems" element={isSignedIn ? <ProblemsPage /> : <Navigate to="/" />} />
+    </Routes>
   )
 }
 
-export default App
+export default App;
