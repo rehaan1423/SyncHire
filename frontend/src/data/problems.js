@@ -33,43 +33,19 @@ export const PROBLEMS = {
       "Only one valid answer exists",
     ],
     starterCode: {
-      javascript: `function twoSum(nums, target) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]
-console.log(twoSum([3, 2, 4], 6)); // Expected: [1, 2]
-console.log(twoSum([3, 3], 6)); // Expected: [0, 1]`,
-      python: `def twoSum(nums, target):
-    # Write your solution here
-    pass
-
-# Test cases
-print(twoSum([2, 7, 11, 15], 9))  # Expected: [0, 1]
-print(twoSum([3, 2, 4], 6))  # Expected: [1, 2]
-print(twoSum([3, 3], 6))  # Expected: [0, 1]`,
-      java: `import java.util.*;
-
-class Solution {
-    public static int[] twoSum(int[] nums, int target) {
-        // Write your solution here
-        
-        return new int[0];
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(twoSum(new int[]{2, 7, 11, 15}, 9))); // Expected: [0, 1]
-        System.out.println(Arrays.toString(twoSum(new int[]{3, 2, 4}, 6))); // Expected: [1, 2]
-        System.out.println(Arrays.toString(twoSum(new int[]{3, 3}, 6))); // Expected: [0, 1]
-    }
-}`,
+      javascript: `function twoSum(nums, target) {\n  // Write your solution here\n  \n}`,
+      python: `def twoSum(nums, target):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nvector<int> twoSum(vector<int>& nums, int target) {\n    // Write your solution here\n    \n    return {};\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(JSON.stringify(twoSum([2, 7, 11, 15], 9)));\nconsole.log("---");\nconsole.log(JSON.stringify(twoSum([3, 2, 4], 6)));\nconsole.log("---");\nconsole.log(JSON.stringify(twoSum([3, 3], 6)));\nconsole.log("---");`,
+      python: `\nprint(twoSum([2, 7, 11, 15], 9))\nprint("---")\nprint(twoSum([3, 2, 4], 6))\nprint("---")\nprint(twoSum([3, 3], 6))\nprint("---")`,
+      "c++": `\nvoid printVector(const vector<int>& vec) {\n    cout << "[";\n    for (size_t i = 0; i < vec.size(); i++) {\n        cout << vec[i] << (i == vec.size() - 1 ? "" : ",");\n    }\n    cout << "]\\n";\n}\n\nint main() {\n    vector<int> nums1 = {2, 7, 11, 15};\n    printVector(twoSum(nums1, 9));\n    cout << "---" << endl;\n    vector<int> nums2 = {3, 2, 4};\n    printVector(twoSum(nums2, 6));\n    cout << "---" << endl;\n    vector<int> nums3 = {3, 3};\n    printVector(twoSum(nums3, 6));\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "[0,1]\n[1,2]\n[0,1]",
       python: "[0, 1]\n[1, 2]\n[0, 1]",
-      java: "[0, 1]\n[1, 2]\n[0, 1]",
+      "c++": "[0,1]\n[1,2]\n[0,1]",
     },
   },
 
@@ -94,54 +70,19 @@ class Solution {
     ],
     constraints: ["1 ≤ s.length ≤ 10⁵", "s[i] is a printable ascii character"],
     starterCode: {
-      javascript: `function reverseString(s) {
-  // Write your solution here
-  
-}
-
-// Test cases
-let test1 = ["h","e","l","l","o"];
-reverseString(test1);
-console.log(test1); // Expected: ["o","l","l","e","h"]
-
-let test2 = ["H","a","n","n","a","h"];
-reverseString(test2);
-console.log(test2); // Expected: ["h","a","n","n","a","H"]`,
-      python: `def reverseString(s):
-    # Write your solution here
-    pass
-
-# Test cases
-test1 = ["h","e","l","l","o"]
-reverseString(test1)
-print(test1)  # Expected: ["o","l","l","e","h"]
-
-test2 = ["H","a","n","n","a","h"]
-reverseString(test2)
-print(test2)  # Expected: ["h","a","n","n","a","H"]`,
-      java: `import java.util.*;
-
-class Solution {
-    public static void reverseString(char[] s) {
-        // Write your solution here
-        
-    }
-    
-    public static void main(String[] args) {
-        char[] test1 = {'h','e','l','l','o'};
-        reverseString(test1);
-        System.out.println(Arrays.toString(test1)); // Expected: [o, l, l, e, h]
-        
-        char[] test2 = {'H','a','n','n','a','h'};
-        reverseString(test2);
-        System.out.println(Arrays.toString(test2)); // Expected: [h, a, n, n, a, H]
-    }
-}`,
+      javascript: `function reverseString(s) {\n  // Write your solution here\n  \n}`,
+      python: `def reverseString(s):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nvoid reverseString(vector<char>& s) {\n    // Write your solution here\n    \n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nlet t1 = ["h","e","l","l","o"];\nreverseString(t1);\nconsole.log(JSON.stringify(t1));\nconsole.log("---");\nlet t2 = ["H","a","n","n","a","h"];\nreverseString(t2);\nconsole.log(JSON.stringify(t2));\nconsole.log("---");`,
+      python: `\nt1 = ["h","e","l","l","o"]\nreverseString(t1)\nprint(t1)\nprint("---")\nt2 = ["H","a","n","n","a","h"]\nreverseString(t2)\nprint(t2)\nprint("---")`,
+      "c++": `\nvoid printVector(const vector<char>& vec) {\n    cout << "[";\n    for (size_t i = 0; i < vec.size(); i++) {\n        cout << vec[i] << (i == vec.size() - 1 ? "" : ", ");\n    }\n    cout << "]\\n";\n}\n\nint main() {\n    vector<char> test1 = {'h','e','l','l','o'};\n    reverseString(test1);\n    printVector(test1);\n    cout << "---" << endl;\n    vector<char> test2 = {'H','a','n','n','a','h'};\n    reverseString(test2);\n    printVector(test2);\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: '["o","l","l","e","h"]\n["h","a","n","n","a","H"]',
       python: "['o', 'l', 'l', 'e', 'h']\n['h', 'a', 'n', 'n', 'a', 'H']",
-      java: "[o, l, l, e, h]\n[h, a, n, n, a, H]",
+      "c++": "[o, l, l, e, h]\n[h, a, n, n, a, H]",
     },
   },
 
@@ -174,41 +115,19 @@ class Solution {
     ],
     constraints: ["1 ≤ s.length ≤ 2 * 10⁵", "s consists only of printable ASCII characters"],
     starterCode: {
-      javascript: `function isPalindrome(s) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(isPalindrome("A man, a plan, a canal: Panama")); // Expected: true
-console.log(isPalindrome("race a car")); // Expected: false
-console.log(isPalindrome(" ")); // Expected: true`,
-      python: `def isPalindrome(s):
-    # Write your solution here
-    pass
-
-# Test cases
-print(isPalindrome("A man, a plan, a canal: Panama"))  # Expected: True
-print(isPalindrome("race a car"))  # Expected: False
-print(isPalindrome(" "))  # Expected: True`,
-      java: `class Solution {
-    public static boolean isPalindrome(String s) {
-        // Write your solution here
-        
-        return false;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(isPalindrome("A man, a plan, a canal: Panama")); // Expected: true
-        System.out.println(isPalindrome("race a car")); // Expected: false
-        System.out.println(isPalindrome(" ")); // Expected: true
-    }
-}`,
+      javascript: `function isPalindrome(s) {\n  // Write your solution here\n  \n}`,
+      python: `def isPalindrome(s):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <string>\n\nusing namespace std;\n\nbool isPalindrome(string s) {\n    // Write your solution here\n    \n    return false;\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(isPalindrome("A man, a plan, a canal: Panama"));\nconsole.log("---");\nconsole.log(isPalindrome("race a car"));\nconsole.log("---");\nconsole.log(isPalindrome(" "));\nconsole.log("---");`,
+      python: `\nprint(isPalindrome("A man, a plan, a canal: Panama"))\nprint("---")\nprint(isPalindrome("race a car"))\nprint("---")\nprint(isPalindrome(" "))\nprint("---")`,
+      "c++": `\nint main() {\n    cout << (isPalindrome("A man, a plan, a canal: Panama") ? "true" : "false") << endl;\n    cout << "---" << endl;\n    cout << (isPalindrome("race a car") ? "true" : "false") << endl;\n    cout << "---" << endl;\n    cout << (isPalindrome(" ") ? "true" : "false") << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "true\nfalse\ntrue",
       python: "True\nFalse\nTrue",
-      java: "true\nfalse\ntrue",
+      "c++": "true\nfalse\ntrue",
     },
   },
 
@@ -240,41 +159,19 @@ print(isPalindrome(" "))  # Expected: True`,
     ],
     constraints: ["1 ≤ nums.length ≤ 10⁵", "-10⁴ ≤ nums[i] ≤ 10⁴"],
     starterCode: {
-      javascript: `function maxSubArray(nums) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // Expected: 6
-console.log(maxSubArray([1])); // Expected: 1
-console.log(maxSubArray([5,4,-1,7,8])); // Expected: 23`,
-      python: `def maxSubArray(nums):
-    # Write your solution here
-    pass
-
-# Test cases
-print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))  # Expected: 6
-print(maxSubArray([1]))  # Expected: 1
-print(maxSubArray([5,4,-1,7,8]))  # Expected: 23`,
-      java: `class Solution {
-    public static int maxSubArray(int[] nums) {
-        // Write your solution here
-        
-        return 0;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4})); // Expected: 6
-        System.out.println(maxSubArray(new int[]{1})); // Expected: 1
-        System.out.println(maxSubArray(new int[]{5,4,-1,7,8})); // Expected: 23
-    }
-}`,
+      javascript: `function maxSubArray(nums) {\n  // Write your solution here\n  \n}`,
+      python: `def maxSubArray(nums):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint maxSubArray(vector<int>& nums) {\n    // Write your solution here\n    \n    return 0;\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]));\nconsole.log("---");\nconsole.log(maxSubArray([1]));\nconsole.log("---");\nconsole.log(maxSubArray([5,4,-1,7,8]));\nconsole.log("---");`,
+      python: `\nprint(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))\nprint("---")\nprint(maxSubArray([1]))\nprint("---")\nprint(maxSubArray([5,4,-1,7,8]))\nprint("---")`,
+      "c++": `\nint main() {\n    vector<int> nums1 = {-2,1,-3,4,-1,2,1,-5,4};\n    cout << maxSubArray(nums1) << endl;\n    cout << "---" << endl;\n    vector<int> nums2 = {1};\n    cout << maxSubArray(nums2) << endl;\n    cout << "---" << endl;\n    vector<int> nums3 = {5,4,-1,7,8};\n    cout << maxSubArray(nums3) << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "6\n1\n23",
       python: "6\n1\n23",
-      java: "6\n1\n23",
+      "c++": "6\n1\n23",
     },
   },
 
@@ -305,38 +202,19 @@ print(maxSubArray([5,4,-1,7,8]))  # Expected: 23`,
     ],
     constraints: ["n == height.length", "2 ≤ n ≤ 10⁵", "0 ≤ height[i] ≤ 10⁴"],
     starterCode: {
-      javascript: `function maxArea(height) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(maxArea([1,8,6,2,5,4,8,3,7])); // Expected: 49
-console.log(maxArea([1,1])); // Expected: 1`,
-      python: `def maxArea(height):
-    # Write your solution here
-    pass
-
-# Test cases
-print(maxArea([1,8,6,2,5,4,8,3,7]))  # Expected: 49
-print(maxArea([1,1]))  # Expected: 1`,
-      java: `class Solution {
-    public static int maxArea(int[] height) {
-        // Write your solution here
-        
-        return 0;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(maxArea(new int[]{1,8,6,2,5,4,8,3,7})); // Expected: 49
-        System.out.println(maxArea(new int[]{1,1})); // Expected: 1
-    }
-}`,
+      javascript: `function maxArea(height) {\n  // Write your solution here\n  \n}`,
+      python: `def maxArea(height):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint maxArea(vector<int>& height) {\n    // Write your solution here\n    \n    return 0;\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(maxArea([1,8,6,2,5,4,8,3,7]));\nconsole.log("---");\nconsole.log(maxArea([1,1]));\nconsole.log("---");`,
+      python: `\nprint(maxArea([1,8,6,2,5,4,8,3,7]))\nprint("---")\nprint(maxArea([1,1]))\nprint("---")`,
+      "c++": `\nint main() {\n    vector<int> h1 = {1,8,6,2,5,4,8,3,7};\n    cout << maxArea(h1) << endl;\n    cout << "---" << endl;\n    vector<int> h2 = {1,1};\n    cout << maxArea(h2) << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "49\n1",
       python: "49\n1",
-      java: "49\n1",
+      "c++": "49\n1",
     },
   },
 
@@ -374,41 +252,19 @@ print(maxArea([1,1]))  # Expected: 1`,
       "text1 and text2 consist of only lowercase English characters."
     ],
     starterCode: {
-      javascript: `function longestCommonSubsequence(text1, text2) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(longestCommonSubsequence("abcde", "ace")); // Expected: 3
-console.log(longestCommonSubsequence("abc", "abc")); // Expected: 3
-console.log(longestCommonSubsequence("abc", "def")); // Expected: 0`,
-      python: `def longestCommonSubsequence(text1, text2):
-    # Write your solution here
-    pass
-
-# Test cases
-print(longestCommonSubsequence("abcde", "ace"))  # Expected: 3
-print(longestCommonSubsequence("abc", "abc"))  # Expected: 3
-print(longestCommonSubsequence("abc", "def"))  # Expected: 0`,
-      java: `class Solution {
-    public static int longestCommonSubsequence(String text1, String text2) {
-        // Write your solution here
-        
-        return 0;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(longestCommonSubsequence("abcde", "ace")); // Expected: 3
-        System.out.println(longestCommonSubsequence("abc", "abc")); // Expected: 3
-        System.out.println(longestCommonSubsequence("abc", "def")); // Expected: 0
-    }
-}`,
+      javascript: `function longestCommonSubsequence(text1, text2) {\n  // Write your solution here\n  \n}`,
+      python: `def longestCommonSubsequence(text1, text2):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <string>\n\nusing namespace std;\n\nint longestCommonSubsequence(string text1, string text2) {\n    // Write your solution here\n    \n    return 0;\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(longestCommonSubsequence("abcde", "ace"));\nconsole.log("---");\nconsole.log(longestCommonSubsequence("abc", "abc"));\nconsole.log("---");\nconsole.log(longestCommonSubsequence("abc", "def"));\nconsole.log("---");`,
+      python: `\nprint(longestCommonSubsequence("abcde", "ace"))\nprint("---")\nprint(longestCommonSubsequence("abc", "abc"))\nprint("---")\nprint(longestCommonSubsequence("abc", "def"))\nprint("---")`,
+      "c++": `\nint main() {\n    cout << longestCommonSubsequence("abcde", "ace") << endl;\n    cout << "---" << endl;\n    cout << longestCommonSubsequence("abc", "abc") << endl;\n    cout << "---" << endl;\n    cout << longestCommonSubsequence("abc", "def") << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "3\n3\n0",
       python: "3\n3\n0",
-      java: "3\n3\n0",
+      "c++": "3\n3\n0",
     },
   },
 
@@ -444,40 +300,19 @@ print(longestCommonSubsequence("abc", "def"))  # Expected: 0`,
       "All the integers of nums1 also appear in nums2."
     ],
     starterCode: {
-      javascript: `function nextGreaterElement(nums1, nums2) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(nextGreaterElement([4, 1, 2], [1, 3, 4, 2])); // Expected: [-1, 3, -1]
-console.log(nextGreaterElement([2, 4], [1, 2, 3, 4])); // Expected: [3, -1]`,
-      python: `def nextGreaterElement(nums1, nums2):
-    # Write your solution here
-    pass
-
-# Test cases
-print(nextGreaterElement([4, 1, 2], [1, 3, 4, 2]))  # Expected: [-1, 3, -1]
-print(nextGreaterElement([2, 4], [1, 2, 3, 4]))  # Expected: [3, -1]`,
-      java: `import java.util.*;
-
-class Solution {
-    public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        // Write your solution here
-        
-        return new int[0];
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2}))); // Expected: [-1, 3, -1]
-        System.out.println(Arrays.toString(nextGreaterElement(new int[]{2, 4}, new int[]{1, 2, 3, 4}))); // Expected: [3, -1]
-    }
-}`,
+      javascript: `function nextGreaterElement(nums1, nums2) {\n  // Write your solution here\n  \n}`,
+      python: `def nextGreaterElement(nums1, nums2):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nvector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {\n    // Write your solution here\n    \n    return {};\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(JSON.stringify(nextGreaterElement([4, 1, 2], [1, 3, 4, 2])));\nconsole.log("---");\nconsole.log(JSON.stringify(nextGreaterElement([2, 4], [1, 2, 3, 4])));\nconsole.log("---");`,
+      python: `\nprint(nextGreaterElement([4, 1, 2], [1, 3, 4, 2]))\nprint("---")\nprint(nextGreaterElement([2, 4], [1, 2, 3, 4]))\nprint("---")`,
+      "c++": `\nvoid printVector(const vector<int>& vec) {\n    cout << "[";\n    for (size_t i = 0; i < vec.size(); i++) {\n        cout << vec[i] << (i == vec.size() - 1 ? "" : ",");\n    }\n    cout << "]\\n";\n}\n\nint main() {\n    vector<int> n1_1 = {4, 1, 2};\n    vector<int> n1_2 = {1, 3, 4, 2};\n    printVector(nextGreaterElement(n1_1, n1_2));\n    cout << "---" << endl;\n    vector<int> n2_1 = {2, 4};\n    vector<int> n2_2 = {1, 2, 3, 4};\n    printVector(nextGreaterElement(n2_1, n2_2));\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "[-1,3,-1]\n[3,-1]",
       python: "[-1, 3, -1]\n[3, -1]",
-      java: "[-1, 3, -1]\n[3, -1]",
+      "c++": "[-1,3,-1]\n[3,-1]",
     },
   },
 
@@ -512,38 +347,19 @@ class Solution {
       "All the pairs prerequisites[i] are unique."
     ],
     starterCode: {
-      javascript: `function canFinish(numCourses, prerequisites) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(canFinish(2, [[1, 0]])); // Expected: true
-console.log(canFinish(2, [[1, 0], [0, 1]])); // Expected: false`,
-      python: `def canFinish(numCourses, prerequisites):
-    # Write your solution here
-    pass
-
-# Test cases
-print(canFinish(2, [[1, 0]]))  # Expected: True
-print(canFinish(2, [[1, 0], [0, 1]]))  # Expected: False`,
-      java: `class Solution {
-    public static boolean canFinish(int numCourses, int[][] prerequisites) {
-        // Write your solution here
-        
-        return false;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(canFinish(2, new int[][]{{1, 0}})); // Expected: true
-        System.out.println(canFinish(2, new int[][]{{1, 0}, {0, 1}})); // Expected: false
-    }
-}`,
+      javascript: `function canFinish(numCourses, prerequisites) {\n  // Write your solution here\n  \n}`,
+      python: `def canFinish(numCourses, prerequisites):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nbool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n    // Write your solution here\n    \n    return false;\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(canFinish(2, [[1, 0]]));\nconsole.log("---");\nconsole.log(canFinish(2, [[1, 0], [0, 1]]));\nconsole.log("---");`,
+      python: `\nprint(canFinish(2, [[1, 0]]))\nprint("---")\nprint(canFinish(2, [[1, 0], [0, 1]]))\nprint("---")`,
+      "c++": `\nint main() {\n    vector<vector<int>> p1 = {{1, 0}};\n    cout << (canFinish(2, p1) ? "true" : "false") << endl;\n    cout << "---" << endl;\n    vector<vector<int>> p2 = {{1, 0}, {0, 1}};\n    cout << (canFinish(2, p2) ? "true" : "false") << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "true\nfalse",
       python: "True\nFalse",
-      java: "true\nfalse",
+      "c++": "true\nfalse",
     },
   },
 
@@ -563,7 +379,7 @@ print(canFinish(2, [[1, 0], [0, 1]]))  # Expected: False`,
       {
         input: '["NumArray", "sumRange", "update", "sumRange"]\n[[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]',
         output: "[null, 9, null, 8]",
-        explanation: "NumArray numArray = new NumArray([1, 3, 5]);\nnumArray.sumRange(0, 2); // return 1 + 3 + 5 = 9\nnumArray.update(1, 2);   // nums = [1, 2, 5]\nnumArray.sumRange(0, 2); // return 1 + 2 + 5 = 8",
+        explanation: "NumArray numArray = new NumArray([1, 3, 5]);\nnumArray.sumRange(0, 2); // return 1 + 3 + 5 = 9\nnumArray.update(1, 2);  // nums = [1, 2, 5]\nnumArray.sumRange(0, 2); // return 1 + 2 + 5 = 8",
       },
     ],
     constraints: [
@@ -575,72 +391,19 @@ print(canFinish(2, [[1, 0], [0, 1]]))  # Expected: False`,
       "At most 3 * 10⁴ calls will be made to update and sumRange."
     ],
     starterCode: {
-      javascript: `class NumArray {
-  constructor(nums) {
-    // Initialize your data structure here
-  }
-
-  update(index, val) {
-    // Write your solution here
-  }
-
-  sumRange(left, right) {
-    // Write your solution here
-    return 0;
-  }
-}
-
-// Test cases
-let numArray = new NumArray([1, 3, 5]);
-console.log(numArray.sumRange(0, 2)); // Expected: 9
-numArray.update(1, 2);
-console.log(numArray.sumRange(0, 2)); // Expected: 8`,
-      python: `class NumArray:
-    def __init__(self, nums):
-        # Initialize your data structure here
-        pass
-
-    def update(self, index, val):
-        # Write your solution here
-        pass
-
-    def sumRange(self, left, right):
-        # Write your solution here
-        return 0
-
-# Test cases
-numArray = NumArray([1, 3, 5])
-print(numArray.sumRange(0, 2))  # Expected: 9
-numArray.update(1, 2)
-print(numArray.sumRange(0, 2))  # Expected: 8`,
-      java: `class NumArray {
-    public NumArray(int[] nums) {
-        // Initialize your data structure here
-    }
-    
-    public void update(int index, int val) {
-        // Write your solution here
-    }
-    
-    public int sumRange(int left, int right) {
-        // Write your solution here
-        return 0;
-    }
-}
-
-class Solution {
-    public static void main(String[] args) {
-        NumArray numArray = new NumArray(new int[]{1, 3, 5});
-        System.out.println(numArray.sumRange(0, 2)); // Expected: 9
-        numArray.update(1, 2);
-        System.out.println(numArray.sumRange(0, 2)); // Expected: 8
-    }
-}`,
+      javascript: `class NumArray {\n  constructor(nums) {\n    // Initialize your data structure here\n  }\n\n  update(index, val) {\n    // Write your solution here\n  }\n\n  sumRange(left, right) {\n    // Write your solution here\n    return 0;\n  }\n}`,
+      python: `class NumArray:\n    def __init__(self, nums):\n        # Initialize your data structure here\n        pass\n\n    def update(self, index, val):\n        # Write your solution here\n        pass\n\n    def sumRange(self, left, right):\n        # Write your solution here\n        return 0`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nclass NumArray {\npublic:\n    NumArray(vector<int>& nums) {\n        // Initialize your data structure here\n        \n    }\n    \n    void update(int index, int val) {\n        // Write your solution here\n        \n    }\n    \n    int sumRange(int left, int right) {\n        // Write your solution here\n        \n        return 0;\n    }\n};`,
+    },
+    hiddenTestCode: {
+      javascript: `\nlet numArray = new NumArray([1, 3, 5]);\nconsole.log(numArray.sumRange(0, 2));\nconsole.log("---");\nnumArray.update(1, 2);\nconsole.log(numArray.sumRange(0, 2));\nconsole.log("---");`,
+      python: `\nnumArray = NumArray([1, 3, 5])\nprint(numArray.sumRange(0, 2))\nprint("---")\nnumArray.update(1, 2)\nprint(numArray.sumRange(0, 2))\nprint("---")`,
+      "c++": `\nint main() {\n    vector<int> nums = {1, 3, 5};\n    NumArray numArray(nums);\n    cout << numArray.sumRange(0, 2) << endl;\n    cout << "---" << endl;\n    numArray.update(1, 2);\n    cout << numArray.sumRange(0, 2) << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "9\n8",
       python: "9\n8",
-      java: "9\n8",
+      "c++": "9\n8",
     },
   },
 
@@ -676,38 +439,19 @@ class Solution {
       "-10⁶ ≤ nums1[i], nums2[i] ≤ 10⁶"
     ],
     starterCode: {
-      javascript: `function findMedianSortedArrays(nums1, nums2) {
-  // Write your solution here
-  
-}
-
-// Test cases
-console.log(findMedianSortedArrays([1, 3], [2])); // Expected: 2
-console.log(findMedianSortedArrays([1, 2], [3, 4])); // Expected: 2.5`,
-      python: `def findMedianSortedArrays(nums1, nums2):
-    # Write your solution here
-    pass
-
-# Test cases
-print(findMedianSortedArrays([1, 3], [2]))  # Expected: 2.0
-print(findMedianSortedArrays([1, 2], [3, 4]))  # Expected: 2.5`,
-      java: `class Solution {
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        // Write your solution here
-        
-        return 0.0;
-    }
-    
-    public static void main(String[] args) {
-        System.out.println(findMedianSortedArrays(new int[]{1, 3}, new int[]{2})); // Expected: 2.0
-        System.out.println(findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4})); // Expected: 2.5
-    }
-}`,
+      javascript: `function findMedianSortedArrays(nums1, nums2) {\n  // Write your solution here\n  \n}`,
+      python: `def findMedianSortedArrays(nums1, nums2):\n    # Write your solution here\n    pass`,
+      "c++": `#include <iostream>\n#include <vector>\n\nusing namespace std;\n\ndouble findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {\n    // Write your solution here\n    \n    return 0.0;\n}`,
+    },
+    hiddenTestCode: {
+      javascript: `\nconsole.log(findMedianSortedArrays([1, 3], [2]));\nconsole.log("---");\nconsole.log(findMedianSortedArrays([1, 2], [3, 4]));\nconsole.log("---");`,
+      python: `\nprint(findMedianSortedArrays([1, 3], [2]))\nprint("---")\nprint(findMedianSortedArrays([1, 2], [3, 4]))\nprint("---")`,
+      "c++": `\nint main() {\n    vector<int> n1_1 = {1, 3};\n    vector<int> n1_2 = {2};\n    cout << findMedianSortedArrays(n1_1, n1_2) << endl;\n    cout << "---" << endl;\n    vector<int> n2_1 = {1, 2};\n    vector<int> n2_2 = {3, 4};\n    cout << findMedianSortedArrays(n2_1, n2_2) << endl;\n    cout << "---" << endl;\n    return 0;\n}`,
     },
     expectedOutput: {
       javascript: "2\n2.5",
       python: "2.0\n2.5",
-      java: "2.0\n2.5",
+      "c++": "2\n2.5",
     },
   },
 };
@@ -723,9 +467,9 @@ export const LANGUAGE_CONFIG = {
     icon: "/python.png",
     monacoLang: "python",
   },
-  java: {
-    name: "Java",
-    icon: "/java.png",
-    monacoLang: "java",
+  "c++": {
+    name: "C++",
+    icon: "/cpp.png",
+    monacoLang: "cpp",
   },
 };
