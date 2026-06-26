@@ -25,9 +25,6 @@ app.use(express.json());
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
 app.use(clerkMiddleware());
 
-app.get("/test", (req, res) => res.send("tested"));
-app.get("/test3", (req, res) => res.send("tested3"));
-
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
