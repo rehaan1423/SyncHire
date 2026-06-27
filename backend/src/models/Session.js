@@ -30,6 +30,18 @@ const sessionSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    isPrivate: {
+      type: Boolean,
+      default: false,
+    },
+    passkey: {
+      type: String,
+      default: "",
+    },
+    revealProblemAfterJoin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

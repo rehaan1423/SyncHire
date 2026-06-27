@@ -9,12 +9,20 @@ import StatsCards from "../components/StatsCards";
 import ActiveSessions from "../components/ActiveSessions";
 import RecentSessions from "../components/RecentSessions";
 import CreateSessionModal from "../components/CreateSessionModal";
+import JoinSessionModal from "../components/JoinSessionModal";
 
 function DashboardPage() {
   const navigate = useNavigate();
   const { user } = useUser();
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [roomConfig, setRoomConfig] = useState({ problem: "", difficulty: "" });
+  const [showJoinModal, setShowJoinModal] = useState(false);
+  const [roomConfig, setRoomConfig] = useState({ 
+    problem: "", 
+    difficulty: "",
+    isPrivate: false,
+    passkey: "",
+    revealProblemAfterJoin: false
+  });
 
   const createSessionMutation = useCreateSession();
 
@@ -28,6 +36,9 @@ function DashboardPage() {
       {
         problem: roomConfig.problem,
         difficulty: roomConfig.difficulty.toLowerCase(),
+        isPrivate: roomConfig.isPrivate,
+        passkey: roomConfig.passkey,
+        revealProblemAfterJoin: roomConfig.revealProblemAfterJoin,
       },
       {
         onSuccess: (data) => {
@@ -51,7 +62,10 @@ function DashboardPage() {
     <>
       <div className="min-h-screen bg-base-300">
         <Navbar />
-        <WelcomeSection onCreateSession={() => setShowCreateModal(true)} />
+        <WelcomeSection 
+          onCreateSession={() => setShowCreateModal(true)} 
+          onJoinSession={() => setShowJoinModal(true)} 
+        />
 
         {/* Grid layout */}
         <div className="container mx-auto px-6 pb-16">
@@ -78,6 +92,15 @@ function DashboardPage() {
         setRoomConfig={setRoomConfig}
         onCreateRoom={handleCreateRoom}
         isCreating={createSessionMutation.isPending}
+      />
+
+      <JoinSessionModal
+        isOpen={showJoinModal}
+        onClose={() => setShowJoinModal(false)}
+        onJoin={(id) => {
+          setShowJoinModal(false);
+          navigate(`/session/${id}`);
+        }}
       />
     </>
   );

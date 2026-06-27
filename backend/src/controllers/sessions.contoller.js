@@ -3,7 +3,7 @@ import Session from "../models/Session.js";
 
 export async function createSession(req, res) {
   try {
-    const { problem, difficulty } = req.body;
+    const { problem, difficulty, isPrivate, passkey, revealProblemAfterJoin } = req.body;
     const userId = req.user._id;
     const clerkId = req.user.clerkId;
 
@@ -11,9 +11,22 @@ export async function createSession(req, res) {
       return res.status(400).json({ message: "Problem and difficulty are required" });
     }
 
+    if (isPrivate && !passkey) {
+      return res.status(400).json({ message: "Passkey is required for private sessions" });
+    }
+
     const callId = `session_${Date.now()}_${Math.random().toString(36).substring(7)}`;
 
-    const session = await Session.create({ problem, difficulty, host: userId, callId });
+    const session = await Session.create({
+      problem,
+      difficulty,
+      host: userId,
+      callId,
+      isPrivate: isPrivate || false,
+      passkey: passkey || "",
+      revealProblemAfterJoin: revealProblemAfterJoin || false
+    });
+
 
     await streamClient.video.call("default", callId).getOrCreate({
       data: {
@@ -39,7 +52,7 @@ export async function createSession(req, res) {
 
 export async function getActiveSessions(_, res) {
   try {
-    const sessions = await Session.find({ status: "active" })
+    const sessions = await Session.find({ status: "active", isPrivate: { $ne: true } })
       .populate("host", "name profileImage email clerkId")
       .populate("participant", "name profileImage email clerkId")
       .sort({ createdAt: -1 })
@@ -73,12 +86,26 @@ export async function getMyRecentSessions(req, res) {
 export async function getSessionById(req, res) {
   try {
     const { id } = req.params;
+    const userId = req.user._id;
 
     const session = await Session.findById(id)
       .populate("host", "name email profileImage clerkId")
       .populate("participant", "name email profileImage clerkId");
 
     if (!session) return res.status(404).json({ message: "Session not found" });
+
+    // Mask problem if needed
+    if (session.revealProblemAfterJoin) {
+      const isHost = session.host._id.toString() === userId.toString();
+      const isParticipant = session.participant && session.participant._id.toString() === userId.toString();
+      
+      if (!isHost && !isParticipant) {
+        const sessionObj = session.toObject();
+        sessionObj.problem = "Hidden until joined";
+        sessionObj.difficulty = "hidden";
+        return res.status(200).json({ session: sessionObj });
+      }
+    }
 
     res.status(200).json({ session });
   } catch (error) {
@@ -90,6 +117,7 @@ export async function getSessionById(req, res) {
 export async function joinSession(req, res) {
   try {
     const { id } = req.params;
+    const { passkey } = req.body;
     const userId = req.user._id;
     const clerkId = req.user.clerkId;
 
@@ -106,6 +134,12 @@ export async function joinSession(req, res) {
     }
 
     if (session.participant) return res.status(409).json({ message: "Session is full" });
+
+    if (session.isPrivate) {
+      if (session.passkey !== passkey) {
+        return res.status(401).json({ message: "Incorrect passkey" });
+      }
+    }
 
     session.participant = userId;
     await session.save();
