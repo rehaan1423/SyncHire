@@ -31,10 +31,11 @@ function CreateSessionModal({
               value={roomConfig.problem}
               onChange={(e) => {
                 const selectedProblem = problems.find((p) => p.title === e.target.value);
-                setRoomConfig({
+                setRoomConfig((prev) => ({
+                  ...prev,
                   difficulty: selectedProblem.difficulty,
                   problem: e.target.value,
-                });
+                }));
               }}
             >
               <option value="" disabled>
@@ -63,6 +64,46 @@ function CreateSessionModal({
               </div>
             </div>
           )}
+
+          <div className="space-y-4">
+            <label className="label cursor-pointer justify-start gap-4">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-primary"
+                checked={roomConfig.isPrivate}
+                onChange={(e) =>
+                  setRoomConfig((prev) => ({ ...prev, isPrivate: e.target.checked }))
+                }
+              />
+              <span className="label-text font-semibold">Make session private (Requires Passkey)</span>
+            </label>
+
+            {roomConfig.isPrivate && (
+              <div className="pl-10">
+                <input
+                  type="text"
+                  placeholder="Enter a passkey"
+                  className="input input-bordered w-full max-w-xs"
+                  value={roomConfig.passkey}
+                  onChange={(e) =>
+                    setRoomConfig((prev) => ({ ...prev, passkey: e.target.value }))
+                  }
+                />
+              </div>
+            )}
+
+            <label className="label cursor-pointer justify-start gap-4">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-primary"
+                checked={roomConfig.revealProblemAfterJoin}
+                onChange={(e) =>
+                  setRoomConfig((prev) => ({ ...prev, revealProblemAfterJoin: e.target.checked }))
+                }
+              />
+              <span className="label-text font-semibold">Reveal problem only after joining</span>
+            </label>
+          </div>
         </div>
 
         <div className="modal-action">
@@ -73,7 +114,7 @@ function CreateSessionModal({
           <button
             className="btn btn-primary gap-2"
             onClick={onCreateRoom}
-            disabled={isCreating || !roomConfig.problem}
+            disabled={isCreating || !roomConfig.problem || (roomConfig.isPrivate && !roomConfig.passkey)}
           >
             {isCreating ? (
               <LoaderIcon className="size-5 animate-spin" />

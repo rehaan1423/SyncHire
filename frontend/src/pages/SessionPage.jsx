@@ -7,7 +7,8 @@ import { executeCode } from "../lib/jdoodle.js";
 import Navbar from "../components/Navbar";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { getDifficultyBadgeClass } from "../lib/utils";
-import { Loader2Icon, LogOutIcon, PhoneOffIcon } from "lucide-react";
+import { Loader2Icon, LogOutIcon, PhoneOffIcon, CopyIcon } from "lucide-react";
+import toast from "react-hot-toast";
 import CodeEditorPanel from "../components/CodeEditorPanel";
 import OutputPanel from "../components/OutputPanel";
 
@@ -21,6 +22,8 @@ function SessionPage() {
     const { user } = useUser();
     const [output, setOutput] = useState(null);
     const [isRunning, setIsRunning] = useState(false);
+    const [passkeyInput, setPasskeyInput] = useState("");
+    const [showPasskeyPrompt, setShowPasskeyPrompt] = useState(false);
 
     const { data: sessionData, isLoading: loadingSession, refetch } = useSessionById(id);
 
@@ -49,9 +52,30 @@ function SessionPage() {
         if (!session || !user || loadingSession) return;
         if (isHost || isParticipant) return;
 
-        joinSessionMutation.mutate(id, { onSuccess: refetch });
+        if (session.isPrivate) {
+            setShowPasskeyPrompt(true);
+            return;
+        }
+
+        joinSessionMutation.mutate({ id }, { onSuccess: refetch });
 
     }, [session, user, loadingSession, isHost, isParticipant, id]);
+
+    const handleJoinWithPasskey = () => {
+        if (!passkeyInput) return;
+        joinSessionMutation.mutate(
+            { id, passkey: passkeyInput },
+            {
+                onSuccess: () => {
+                    setShowPasskeyPrompt(false);
+                    refetch();
+                },
+                onError: () => {
+                    setPasskeyInput("");
+                }
+            }
+        );
+    };
 
 
     useEffect(() => {
@@ -88,6 +112,49 @@ function SessionPage() {
             endSessionMutation.mutate(id, { onSuccess: () => navigate("/dashboard") });
         }
     };
+
+    if (showPasskeyPrompt) {
+        return (
+            <div className="h-screen bg-base-100 flex flex-col">
+                <Navbar />
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="card w-96 bg-base-200 shadow-xl">
+                        <div className="card-body">
+                            <h2 className="card-title justify-center mb-4">Private Session</h2>
+                            <p className="text-center mb-4 text-base-content/70">
+                                This session requires a passkey to join.
+                            </p>
+                            <input
+                                type="text"
+                                placeholder="Enter Passkey"
+                                className="input input-bordered w-full mb-4"
+                                value={passkeyInput}
+                                onChange={(e) => setPasskeyInput(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") handleJoinWithPasskey();
+                                }}
+                            />
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-ghost" onClick={() => navigate("/dashboard")}>
+                                    Cancel
+                                </button>
+                                <button 
+                                    className="btn btn-primary gap-2" 
+                                    onClick={handleJoinWithPasskey}
+                                    disabled={joinSessionMutation.isPending || !passkeyInput}
+                                >
+                                    {joinSessionMutation.isPending && (
+                                        <Loader2Icon className="w-4 h-4 animate-spin" />
+                                    )}
+                                    Join Session
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="h-screen bg-base-100 flex flex-col">
@@ -126,6 +193,18 @@ function SessionPage() {
                                                     {session?.difficulty.slice(0, 1).toUpperCase() +
                                                         session?.difficulty.slice(1) || "Easy"}
                                                 </span>
+                                                {isHost && (
+                                                    <button
+                                                        onClick={() => {
+                                                            navigator.clipboard.writeText(session._id);
+                                                            toast.success("Session ID copied!");
+                                                        }}
+                                                        className="btn btn-outline btn-sm gap-2"
+                                                    >
+                                                        <CopyIcon className="w-4 h-4" />
+                                                        Copy ID
+                                                    </button>
+                                                )}
                                                 {isHost && session?.status === "active" && (
                                                     <button
                                                         onClick={handleEndSession}

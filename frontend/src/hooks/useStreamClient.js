@@ -69,7 +69,13 @@ function useStreamClient(session, loadingSession, isHost, isParticipant) {
       // iife
       (async () => {
         try {
-          if (videoCall) await videoCall.leave();
+          if (videoCall) {
+            try {
+              await videoCall.leave();
+            } catch (e) {
+              // Ignore "Cannot leave call that has already been left" error
+            }
+          }
           if (chatClientInstance) await chatClientInstance.disconnectUser();
           await disconnectStreamClient();
         } catch (error) {
